@@ -10,7 +10,9 @@ export class navbarComponent implements OnInit {
 public username:any;
   constructor() { }
   ngOnInit() {
-    this.username=JSON.parse(localStorage.getItem('userDetails')).email.replace(/@[^@]+$/, '');  }
+    let email=JSON.parse(localStorage.getItem('userDetails')).email ;
+    this.username = email.split('@')[0].toUpperCase()
+  }
 
   logOut() {
     localStorage.clear()
