@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+  <ul class="navbar-nav mx-auto">
+    <li class="nav-item px-3">
+      <a class="nav-link " href="users">
+        Users
+      </a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" href="posts">Posts</a>
+    </li>
+    <li class="nav-item px-3">
+      <a class="nav-link" href="comments">Comments</a>
+    </li>
+  </ul>
+  <div class="justify-content-right">
+    <span class="text-muted mr-4">Welcome {{username}},</span>
+    <a class="text-muted" (click)="logOut()" href="login">Logout</a>
+    </div>
+</nav>

@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container my-3">
+  <table class="table table-bordered">
+    <thead>
+      <tr >
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>username</th>
+        <th>City</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.address.city}}</td>
+        <td>{{user.phone}}</td>
+      </tr>
+  </table>
+</div>
