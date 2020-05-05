@@ -13,6 +13,8 @@ export class loginComponent implements OnInit {
   invalidLogin: boolean = false;
   submitted = false;
   users: any = sampleData;
+  message: boolean = false;
+  error: boolean=false;
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     ) {}
@@ -21,13 +23,15 @@ export class loginComponent implements OnInit {
       email: ['', [Validators.required,Validators.email]],
       password: ['', [Validators.required,Validators.minLength(6)]]
     });
+    localStorage.setItem('token','govind')
 
   }
   get fControl() { return this.loginForm.controls; }
+
   logIn() {
       this.submitted = true;
       if (this.loginForm.invalid) {
-          return;
+
       }
 
       let userArray = this.users;
@@ -35,9 +39,16 @@ export class loginComponent implements OnInit {
         if((this.loginForm.controls['email'].value != null || this.loginForm.controls['password'].value != null)
          && (this.loginForm.controls['email'].value ==
         value.email && this.loginForm.controls['password'].value == value.password)){
-         this.router.navigate(['/users'])
-         localStorage.setItem('userDetails',JSON.stringify(this.loginForm.value))
+
+        if(localStorage.getItem('token')=='govind'){
+          this.message = true
+
+          localStorage.setItem('userDetails',JSON.stringify(this.loginForm.value))
         }
+      }
+
+
       })
+
     }
 }

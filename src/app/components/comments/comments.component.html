@@ -11,7 +11,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let comment of comments">
+      <tr *ngFor="let comment of comments | paginate :{
+    itemsPerPage: 7,
+  currentPage: page}">
         <td>{{comment.postId}}</td>
         <td>{{comment.id}}</td>
         <td>{{comment.name}}</td>
@@ -19,4 +21,6 @@
         <td>{{comment.body}}</td>
       </tr>
   </table>
+  <pagination-controls  class="float-right my-4 pagination"
+  (pageChange)="page=($event)"></pagination-controls>
   </div>

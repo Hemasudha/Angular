@@ -1,13 +1,13 @@
 [{
-  "email":"hema@gmail.com",
+  "email":"user1@gmail.com",
   "password":"123456"
 
 },
 {
-  "email":"saharsh@gmail.com",
+  "email":"user2@gmail.com",
   "password":"123456"
 },
 {
-  "email":"hari@gmail.com",
+  "email":"user3@gmail.com",
   "password":"123456"
 }]

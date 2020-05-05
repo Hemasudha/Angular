@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class postsComponent implements OnInit{
   posts: any;
+  page: Number = 1;
   constructor(private appService:AppService){}
   ngOnInit(){
     this.appService.getPosts().subscribe(res=>{

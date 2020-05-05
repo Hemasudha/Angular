@@ -7,10 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class usersComponent implements OnInit{
   users: any;
+  page: Number = 1;
   constructor(private appService:AppService){}
   ngOnInit(){
   this.appService.getUsers().subscribe(res=>{
       this.users=res
     })
   }
+
 }

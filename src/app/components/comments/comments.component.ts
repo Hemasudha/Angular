@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
   comments: any;
+  page:Number=1;
   constructor(private appService:AppService) { }
   ngOnInit() {
     this.appService.getComments().subscribe(res=>{
