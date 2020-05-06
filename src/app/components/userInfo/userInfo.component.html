@@ -1,0 +1,18 @@
+  <div class="modal-content" #childModal>
+<div  class="modal-header">
+  <h2 class="text-muted align-items-center">User Information</h2>
+</div>
+<div class="modal-body">
+<form [formGroup]="userForm">
+  <input type="text" formControlName="name" class="form-control"  [value]="data.name"/>
+  <input type="text" formControlName="email" class="form-control"  [value]="data.username"/>
+  <input type="text" formControlName="username" class="form-control" [value]="data.email" />
+  <input type="text" formControlName="city" class="form-control"  [value]="data.address.city"/>
+  <input type="text" formControlName="phone" class="form-control"  [value]="data.phone"/>
+</form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-info" (click)="bsModalRef.hide()">{{closeBtn}}</button>
+
+</div>
+</div>

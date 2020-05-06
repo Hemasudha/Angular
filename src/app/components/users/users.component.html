@@ -12,8 +12,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users | paginate: {itemsPerPage: 8,currentPage: page}">
-        <td>{{user.id}}</td>
+      <tr *ngFor="let user of users| paginate: {itemsPerPage: 8,currentPage: page}; let i = index">
+        <td (click)="ViewUserModal(i)" [ngStyle]="{'cursor':'pointer'}">{{user.id}}</td>
         <td>{{user.name}}</td>
         <td>{{user.email}}</td>
         <td>{{user.username}}</td>
@@ -23,4 +23,5 @@
   </table>
   <pagination-controls  class="float-right" (pageChange)="page=($event)"></pagination-controls>
 </div>
+
 

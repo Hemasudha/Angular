@@ -10,7 +10,10 @@ import {usersComponent} from './components/users/users.component'
 import {navbarComponent} from './shared/navbar/navbar.component';
 import { postsComponent } from './components/posts/posts.component';
 import { CommentsComponent } from './components/comments/comments.component';
+import {userInfoComponent} from './components/userInfo/userInfo.component'
 import {NgxPaginationModule} from 'ngx-pagination'
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 @NgModule({
   declarations: [
@@ -19,17 +22,20 @@ import {NgxPaginationModule} from 'ngx-pagination'
     navbarComponent,
     usersComponent,
     postsComponent,
-    CommentsComponent
+    CommentsComponent,
+    userInfoComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ModalModule.forRoot()
   ],
-  providers: [AppService,
+  providers: [AppService,BsModalRef
     ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[userInfoComponent]
 })
 export class AppModule { }
