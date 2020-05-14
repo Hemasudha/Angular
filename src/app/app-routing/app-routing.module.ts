@@ -5,6 +5,7 @@ import { loginComponent } from '../components/login/login.component';
 import { usersComponent } from '../components/users/users.component';
 import { postsComponent } from '../components/posts/posts.component';
 import { CommentsComponent } from '../components/comments/comments.component';
+import { updateUserComponent } from '../components/update-user/update-user.component';
 const appRoutes:Routes=[
   {
     path: "login",
@@ -27,6 +28,10 @@ const appRoutes:Routes=[
   {
     path:"comments",
     component:CommentsComponent
+  },
+  {
+    path:"edit",
+    component:updateUserComponent
   }
 ]
 

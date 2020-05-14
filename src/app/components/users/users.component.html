@@ -9,19 +9,42 @@
         <th>username</th>
         <th>City</th>
         <th>Phone</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users| paginate: {itemsPerPage: 8,currentPage: page}; let i = index">
-        <td (click)="ViewUserModal(i)" [ngStyle]="{'cursor':'pointer'}">{{user.id}}</td>
-        <td>{{user.name}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.username}}</td>
-        <td>{{user.address.city}}</td>
-        <td>{{user.phone}}</td>
+        <td class="text-primary align-middle" (click)="ViewUserModal(i)" [ngStyle]="{'cursor':'pointer'}">{{user.id}}</td>
+        <td class="align-middle" >{{user.name}}</td>
+        <td class="align-middle" >{{user.email}}</td>
+        <td  class="align-middle" [ngStyle]="{'cursor':'pointer'}">
+          <div [popover]="popTemplate" [popoverContext]="context"  [outsideClick]="true" (click)="getpopOver(i)" >
+            {{user.username}}
+          </div>
+      </td>
+        <td class="align-middle" >{{user.address.city}}</td>
+        <td class="align-middle" >{{user.phone}}</td>
+        <td class="align-middle" >
+          <a  class="mx-2" tooltip="click here to edit" (click)="editUser(i)"><i class="fa fa-edit"></i></a>
+          <app-update-user  [userData]="userInfo" ></app-update-user>
+
+          <a class="text-primary" tooltip="click here to delete" (click)="deleteUser(user)"><i class="fa fa-trash"></i></a>
+
+        </td>
+
       </tr>
+
   </table>
+  {{this.userInfo |json}}
+
   <pagination-controls  class="float-right" (pageChange)="page=($event)"></pagination-controls>
 </div>
+
+<ng-template #popTemplate let-username="username" let-phone="phone">
+  <p>Username:{{username}}</p>
+  <p>phone:{{phone}}</p>
+  </ng-template>
+
+
 
 
