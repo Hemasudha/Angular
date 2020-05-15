@@ -18,6 +18,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import {NgxPaginationModule} from 'ngx-pagination'
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormsModule }   from '@angular/forms';
+import {SharedService} from './shared.service';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { FormsModule }   from '@angular/forms';
     TooltipModule.forRoot(),
     PopoverModule.forRoot()
   ],
-  providers: [AppService,BsModalRef
+  providers: [AppService,BsModalRef, SharedService
     ],
   bootstrap: [AppComponent],
   entryComponents:[userInfoComponent]
