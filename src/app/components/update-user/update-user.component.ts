@@ -4,49 +4,50 @@ import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
 import { User } from './../../models/users';
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output, AfterViewInit, OnChanges } from '@angular/core';
+import { SharedService } from '../../shared.service';
 
 @Component({
-  selector:'app-update-user',
-  templateUrl:'./update-user.component.html'
+  selector: 'app-update-user',
+  templateUrl: './update-user.component.html'
 })
 
-export class updateUserComponent implements OnInit,AfterViewInit,OnChanges{
+export class updateUserComponent implements OnInit, OnChanges {
   @Input() userData: any;
   user: any;
   // @Input('userData') set setData(value) {
   //   this.user = value;
   //  }
   @Output() closePane = new EventEmitter();
-editForm: FormGroup
+  editForm: FormGroup
   clickedUser: any;
+  userInfo: {};
 
 
   constructor(
-    private fb:FormBuilder,
+    private fb: FormBuilder,
     private router: Router,
-    private appService:AppService){
+    private appService: AppService, private sharedService: SharedService) {
   }
-  ngOnInit(){
-    console.log(this.user)
+  ngOnInit() {
+    this.sharedService.sharedMessage.subscribe(message => this.userInfo = message);
+    console.log(this.userInfo);
     this.editForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.required,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required]],
       city: ['', [Validators.required]],
       phone: ['', [Validators.required]]
     });
-    this.clickedUser = this.userData;
+    this.clickedUser = this.userInfo;
 
 
   }
-  ngAfterViewInit(){
-    console.log(this.userData)
-  }
-  ngOnChanges(){
-    console.log(this.userData)
-  }
- updateUser(id,user) {
-    this.appService.updateUser(id,this.editForm.value)
+
+  ngOnChanges() {
+    console.log(this.userData);
+  };
+  updateUser(id, user) {
+    this.appService.updateUser(id, this.editForm.value)
       .subscribe(
         data => {
           console.log(data)
