@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
   import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   import { userInfoComponent } from '../userInfo/userInfo.component';
 import { User } from 'src/app/models/users';
+import { SharedService } from '../../shared.service';
 
 
   @Component({
@@ -19,14 +20,16 @@ import { User } from 'src/app/models/users';
     showDiv = false;
     userInfo: any;
     context;
+    message: string;
     constructor(private appService:AppService,
       private modalService: BsModalService,
-      private router:Router){
+      private router:Router, private sharedService: SharedService){
       }
     ngOnInit(){
     this.appService.getUsers().subscribe(res=>{
         this.users=res
       })
+      this.sharedService.sharedMessage.subscribe(message => this.message = message)
     }
     ViewUserModal(i) {
       this.modalRef = this.modalService.show(userInfoComponent, { class: 'modal-md',
@@ -47,6 +50,7 @@ import { User } from 'src/app/models/users';
         this.showDiv = true
         this.userInfo= this.users[i]
         // console.log(this.userInfo)
+        this.sharedService.nextMessage(this.userInfo);
         this.router.navigate(['/edit'])
       }
       changeCount(data) {
