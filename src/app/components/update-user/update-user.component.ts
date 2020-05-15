@@ -2,8 +2,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
-import { User } from './../../models/users';
-import { Component, OnInit, Input, ViewChild, EventEmitter, Output, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import { SharedService } from '../../shared.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { SharedService } from '../../shared.service';
   templateUrl: './update-user.component.html'
 })
 
-export class updateUserComponent implements OnInit, OnChanges {
+export class updateUserComponent implements OnInit{
   @Input() userData: any;
   user: any;
   // @Input('userData') set setData(value) {
@@ -43,9 +42,7 @@ export class updateUserComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges() {
-    console.log(this.userData);
-  };
+
   updateUser(id, user) {
     this.appService.updateUser(id, this.editForm.value)
       .subscribe(

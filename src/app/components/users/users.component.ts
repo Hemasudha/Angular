@@ -20,7 +20,7 @@ import { SharedService } from '../../shared.service';
     showDiv = false;
     userInfo: any;
     context;
-    message: string;
+    message: any;
     constructor(private appService:AppService,
       private modalService: BsModalService,
       private router:Router, private sharedService: SharedService){
@@ -47,9 +47,7 @@ import { SharedService } from '../../shared.service';
 
       }
       editUser(i){
-        this.showDiv = true
         this.userInfo= this.users[i]
-        // console.log(this.userInfo)
         this.sharedService.nextMessage(this.userInfo);
         this.router.navigate(['/edit'])
       }
@@ -57,9 +55,7 @@ import { SharedService } from '../../shared.service';
         console.log(data);
         this.showDiv = true;
       }
-      backTousers(data){
-        console.log(data)
-      }
+
       deleteUser(user: User): void {
         this.appService.deleteUser(user.id)
           .subscribe( data => {

@@ -1,4 +1,3 @@
-import { popupComponent } from './components/popup/popup.component';
 import { updateUserComponent } from './components/update-user/update-user.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -31,7 +30,6 @@ import {SharedService} from './shared.service';
     CommentsComponent,
     userInfoComponent,
     updateUserComponent,
-    popupComponent
   ],
   imports: [
     BrowserModule,
