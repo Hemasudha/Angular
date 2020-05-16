@@ -1,6 +1,6 @@
 LOGIN INFO: 
 Email:user1@gmail.com 
-assword: 123456
+Password: 123456
 # AngularAssignment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
