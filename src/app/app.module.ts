@@ -11,12 +11,14 @@ import {usersComponent} from './components/users/users.component'
 import {navbarComponent} from './shared/navbar/navbar.component';
 import { postsComponent } from './components/posts/posts.component';
 import { CommentsComponent } from './components/comments/comments.component';
-import {userInfoComponent} from './components/userInfo/userInfo.component';
+import {userModalComponent} from './components/user-modal/user-modal.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import {NgxPaginationModule} from 'ngx-pagination'
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormsModule }   from '@angular/forms';
+import { AlertModule } from 'ngx-bootstrap/alert';
+
 import {SharedService} from './shared.service';
 
 
@@ -28,7 +30,7 @@ import {SharedService} from './shared.service';
     usersComponent,
     postsComponent,
     CommentsComponent,
-    userInfoComponent,
+    userModalComponent,
     updateUserComponent,
   ],
   imports: [
@@ -40,11 +42,12 @@ import {SharedService} from './shared.service';
     NgxPaginationModule,
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [AppService,BsModalRef, SharedService
     ],
   bootstrap: [AppComponent],
-  entryComponents:[userInfoComponent]
+  entryComponents:[userModalComponent]
 })
 export class AppModule { }

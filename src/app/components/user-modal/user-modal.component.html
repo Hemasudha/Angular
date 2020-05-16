@@ -1,0 +1,76 @@
+<div class="modal-content" #childModal *ngIf="showForm" >
+  <div  class="modal-header">
+    <h2 class="text-muted align-items-center">User Information</h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="updateModal($event)"
+    >
+      <div class="form-group">
+        <label for="id">Id:</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.id"
+          name="id"
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">Name:</label>
+
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.email"
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="username">Username:</label>
+
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.username"
+          name="username"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="website">website:</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.website"
+          name="website"
+        />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="user.phone"
+          name="phone"
+        />
+      </div>
+      <input type="submit" value="Update" class="btn btn-info button" />
+
+    </form>
+  </div>
+
+  </div>
+

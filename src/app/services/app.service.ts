@@ -1,7 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http"
-import { User } from '../models/users';
-import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: "root"
@@ -31,18 +30,6 @@ getComments(){
     headers: this.requestHeaders
 })
 }
-getUserById(id) {
-
-  return this.http.get<User>(this.baseUrl + '/users/' + id);
-}
-updateUser(id:number,user:User){
-  return this.http.put(this.baseUrl + '/users/'+id,user);
-}
-
-deleteUser(id: number) {
-  return this.http.delete(this.baseUrl + '/users/' + id);
-}
-
 }
 
 

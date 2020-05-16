@@ -1,11 +1,10 @@
 import { Router } from '@angular/router';
-  import { AppService } from 'src/app/services/app.service';
-  import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-  import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-  import { userInfoComponent } from '../userInfo/userInfo.component';
-import { User } from 'src/app/models/users';
+import { AppService } from 'src/app/services/app.service';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { userModalComponent } from '../user-modal/user-modal.component';
 import { SharedService } from '../../shared.service';
-
+import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
 
   @Component({
     selector: 'app-users',
@@ -13,26 +12,40 @@ import { SharedService } from '../../shared.service';
     styleUrls:['./users.component.scss']
   })
   export class usersComponent implements OnInit{
-    // user:User[]
-    users;
+    users: any;
+    data: any;
      page: Number = 1;
     modalRef: BsModalRef;
-    showDiv = false;
     userInfo: any;
     context;
     message: any;
+    showAlert:boolean = false;
+    alerts: any[] = [{
+      type: 'success',
+      msg: `Deleted successfully.`,
+      timeout: 5000
+    }];
+
     constructor(private appService:AppService,
       private modalService: BsModalService,
-      private router:Router, private sharedService: SharedService){
+      private router:Router,
+      private sharedService: SharedService,
+      ){
       }
     ngOnInit(){
-    this.appService.getUsers().subscribe(res=>{
-        this.users=res
-      })
+      this.getUsers();
+      this.users = JSON.parse(localStorage.getItem('user'))
       this.sharedService.sharedMessage.subscribe(message => this.message = message)
     }
+    getUsers(){
+      this.appService.getUsers().subscribe(res=>{
+        this.data=res
+         localStorage.setItem('user',JSON.stringify(this.data))
+        console.log(this.data)
+      })
+    }
     ViewUserModal(i) {
-      this.modalRef = this.modalService.show(userInfoComponent, { class: 'modal-md',
+      this.modalRef = this.modalService.show(userModalComponent, { class: 'modal-md',
       initialState: {
         user: this.users[i],
         } });
@@ -46,20 +59,19 @@ import { SharedService } from '../../shared.service';
         };
 
       }
-      editUser(i){
-        this.userInfo= this.users[i]
+      editUser(user){
+        const itemIndex = this.users.findIndex(item => item.id === user.id);
+        this.userInfo= this.users[itemIndex]
         this.sharedService.nextMessage(this.userInfo);
         this.router.navigate(['/edit'])
       }
-      changeCount(data) {
-        console.log(data);
-        this.showDiv = true;
-      }
+      deleteUser(user) {
+           let index = this.users.indexOf(user);
+           this.users.splice(index,1);
+           this.showAlert = true;
 
-      deleteUser(user: User): void {
-        this.appService.deleteUser(user.id)
-          .subscribe( data => {
-            this.users = this.users.filter(u => u !== user);
-          })
       };
+      onClosed(dismissedAlert: AlertComponent): void {
+        this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+      }
 }

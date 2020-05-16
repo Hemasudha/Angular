@@ -1,8 +1,8 @@
-import { FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, NgForm } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/services/app.service';
-import { Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild} from '@angular/core';
 import { SharedService } from '../../shared.service';
 
 @Component({
@@ -11,50 +11,25 @@ import { SharedService } from '../../shared.service';
 })
 
 export class updateUserComponent implements OnInit{
-  @Input() userData: any;
   user: any;
-  // @Input('userData') set setData(value) {
-  //   this.user = value;
-  //  }
-  @Output() closePane = new EventEmitter();
-  editForm: FormGroup
   clickedUser: any;
-  userInfo: {};
-
-
+  userInfo: any;
+  users: any;
+  @ViewChild('form') public form:NgForm
   constructor(
-    private fb: FormBuilder,
     private router: Router,
-    private appService: AppService, private sharedService: SharedService) {
+     private sharedService: SharedService) {
   }
   ngOnInit() {
     this.sharedService.sharedMessage.subscribe(message => this.userInfo = message);
-    console.log(this.userInfo);
-    this.editForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
-    });
     this.clickedUser = this.userInfo;
-
-
   }
-
-
-  updateUser(id, user) {
-    this.appService.updateUser(id, this.editForm.value)
-      .subscribe(
-        data => {
-          console.log(data)
-          this.closePane.emit(data);
-
+  updateUser(user) {
+    this.users = JSON.parse(localStorage.getItem('user'))
+    const itemIndex = this.users.findIndex(item => item.id === this.clickedUser.id);
+    this.users[itemIndex] = this.form.value;
+      localStorage.setItem('user',JSON.stringify(this.users))
           this.router.navigate(['users']);
-        },
-        error => {
-          alert(error);
-        });
   }
 
 }

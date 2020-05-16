@@ -1,28 +1,67 @@
 <div class="container">
-  <h2 class="text-muted text-center my-4">Edit User</h2>
-<form [formGroup]="editForm" class="mx-auto col-sm-6 py-4 bg-light" >
-  <div class="form-group">
-    <label for="name">Name:</label>
-  <input type="text" formControlName="name" class="form-control"  [value]="clickedUser.name"/>
-</div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-  <input type="text" formControlName="email" class="form-control"  [value]="clickedUser.username"/>
-</div>
-  <div class="form-group">
-    <label for="username">Username:</label>
-  <input type="text" formControlName="username" class="form-control" [value]="clickedUser.email" />
-</div>
-  <div class="form-group">
-    <label for="city">city:</label>
-  <input type="text" formControlName="city" class="form-control"  [value]="clickedUser.address.city"/>
-</div>
-  <div class="form-group">
-    <label for="phone">phone:</label>
+<h2 class="text-muted text-center">Update User</h2>
+  <form #form="ngForm" class="col-sm-6 bg-light mx-auto my-4" (ngSubmit)="updateUser($event)">
+    <div class="form-group">
+      <label for="id">id:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="clickedUser.id"
+        name="id"
+      />
+    </div>
+    <div class="form-group">
+      <label for="name">name:</label>
 
-  <input type="text" formControlName="phone" class="form-control"  [value]="clickedUser.phone"/>
-</div>
-<button type="submit" class="btn btn-info" (click)="updateUser()">update</button>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="clickedUser.name"
+        name="name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">email:</label>
 
-</form>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="clickedUser.email"
+        name="email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="username">username:</label>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="clickedUser.username"
+        name="username"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="website">website:</label>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="clickedUser.website"
+        name="website"
+      />
+    </div>
+    <div class="form-group">
+      <label for="phone">phone:</label>
+
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="clickedUser.phone"
+        name="phone"
+      />
+    </div>
+    <input type="submit" value="Update" class="btn btn-info button" />
+
+  </form>
 </div>
