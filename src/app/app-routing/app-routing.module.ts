@@ -6,6 +6,7 @@ import { usersComponent } from '../components/users/users.component';
 import { postsComponent } from '../components/posts/posts.component';
 import { CommentsComponent } from '../components/comments/comments.component';
 import { updateUserComponent } from '../components/update-user/update-user.component';
+import { errorComponent } from '../components/error/error.component';
 const appRoutes:Routes=[
   {
     path: "login",
@@ -32,6 +33,10 @@ const appRoutes:Routes=[
   {
     path:"edit",
     component:updateUserComponent
+  },
+  {
+    path:"**",
+    component: errorComponent
   }
 ]
 

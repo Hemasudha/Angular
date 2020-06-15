@@ -20,6 +20,7 @@ import { FormsModule }   from '@angular/forms';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
 import {SharedService} from './shared.service';
+import { errorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {SharedService} from './shared.service';
     CommentsComponent,
     userModalComponent,
     updateUserComponent,
+    errorComponent
   ],
   imports: [
     BrowserModule,
